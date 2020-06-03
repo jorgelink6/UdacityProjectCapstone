@@ -1,0 +1,19 @@
+difining network
+    vpc(high availability)
+        2 public subnet
+            a. load balancer, Nat gateway, jenkins
+            b. load balancer, Nat gateway
+        2 private network
+            a. minikube cluster
+            b. minikube cluster
+
+
+make two instances with cloudforamtion
+    1. jenkins server (install Ansible)
+    2. kluster for kubernetes (install docker, kubectl, minikube)
+
+blue/green deployment
+
+
+docker image (Ngnix hello world)
+

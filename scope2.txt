@@ -1,0 +1,13 @@
+jenkins (hadolint, pylint*,) # intall plugins: AWScredentials , boto*, ansible
+    SETUP:
+        -create jenkins server
+        -install dependencies and plugins
+            -aws plugin
+            -hadolint program
+            -docker plugin and programs(docker, )
+            -ansible plugin and programs(ansible)
+    CI:
+        -link repository to jenkins
+        -pass all linting
+    CD:
+        -config ansible to deploy ec2 instance kubernetes cluster (docker, kubctl, minikube) 
