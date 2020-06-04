@@ -46,7 +46,7 @@ Resources:
     Properties:
       Tags: 
         - Key: "Name"
-          Value: "Green"
+          Value: "Blue"
         - Key: "Project"
           Value: "Capstone" 
       SubnetId:
