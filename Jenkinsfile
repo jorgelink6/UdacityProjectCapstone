@@ -21,6 +21,12 @@ pipeline {
                   sh 'hadolint Dockerfile'
               }
          }
+         stage("Fix the permission issue") {
+             agent any
+             steps {
+                 sh "sudo chown root:jenkins /run/docker.sock"
+             }
+ 
          stage('Build Dockerfile') {
              agent {
                  dockerfile true
