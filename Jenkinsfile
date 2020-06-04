@@ -26,17 +26,13 @@ pipeline {
                   sh 'docker build --tag=apiml .'
               }
          }  
-
-
-        //  stage('Build Dockerfile') {
-        //      agent {
-        //          dockerfile true
-        //      }
-        //       steps {
-        //           sh 'build --tag=apiml .'
-        //       }
-        //  }
-
+         stage('Deploy docker to Docker Hub') {
+              steps {
+                  sh 'dockerpath=jorgelink6/apiml'
+                  sh 'docker tag apiml:latest $dockerpath:latest'
+                  sh 'docker push $dockerpath:latest'
+              }
+         }  
 
 
      }
