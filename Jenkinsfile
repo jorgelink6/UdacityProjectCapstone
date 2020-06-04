@@ -2,9 +2,8 @@
 pipeline {
      agent any
      stages {
-         stage('Build') {
+         stage('start') {
              steps {
-                 sh 'sudo visudo'
                  sh 'echo "Hello World"'
                  sh '''
                      echo "Multiline shell steps works too"
@@ -23,6 +22,9 @@ pipeline {
               }
          }
          stage('Build Dockerfile') {
+             agent {
+                 dockerfile true
+             }
               steps {
                   sh 'docker build --tag=apiml .'
               }
