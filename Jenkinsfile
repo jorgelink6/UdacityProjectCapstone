@@ -26,7 +26,7 @@ pipeline {
                  dockerfile true
              }
               steps {
-                  sh 'build --tag=apiml .'
+                  sh 'sudo -n docker build --tag=apiml .'
               }
          }
 
