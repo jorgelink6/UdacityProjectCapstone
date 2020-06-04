@@ -30,7 +30,7 @@ pipeline {
               steps {
                   sh 'dockerpath=jorgelink6/apiml'
                   sh 'docker tag apiml:latest jorgelink6/apiml:latest'
-                  sh 'docker push $dockerpath:latest'
+                  sh 'docker push jorgelink6/apiml:latest'
               }
          }  
 
