@@ -20,14 +20,21 @@ pipeline {
               steps {
                   sh 'hadolint Dockerfile'
               }
-         } 
-         stage('Build Dockerfile') {
-             agent {
-                 dockerfile true
-             }
+         }
+         stage('Build docker') {
               steps {
-                  sh 'build --tag=apiml .'
+                  sh 'docker build --tag=apiml .'
               }
+         }  
+
+
+        //  stage('Build Dockerfile') {
+        //      agent {
+        //          dockerfile true
+        //      }
+        //       steps {
+        //           sh 'build --tag=apiml .'
+        //       }
          }
 
 
