@@ -143,4 +143,4 @@ Outputs:
       Description: A reference to the security group
       Value: !Ref WebServerSecGroup
       Export:
-        Name: !Sub ${EnvironmentName}-SECG
+        Name: !Sub ${EnvironmentName}-SECG2
