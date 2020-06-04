@@ -21,6 +21,11 @@ pipeline {
                   sh 'hadolint Dockerfile'
               }
          }
+         stage('Build Dockerfile') {
+              steps {
+                  sh 'docker build --tag=apiml'
+              }
+         }
 
 
 
