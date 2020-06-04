@@ -30,8 +30,8 @@ pipeline {
               steps {
                   sh 'docker login --username jorgelink6 --password testpassword'
                   sh 'dockerpath=jorgelink6/apiml'
-                  sh 'docker tag apiml:latest jorgelink6/apiml:latest'
-                  sh 'docker push jorgelink6/apiml:latest'
+                  sh 'docker tag apiml:latest jorgelink6/apiml:ngix'
+                  sh 'docker push jorgelink6/apiml:ngix'
                   sh 'docker logout'
 
               }
