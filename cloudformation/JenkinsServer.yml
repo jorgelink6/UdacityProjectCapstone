@@ -84,6 +84,10 @@ Resources:
         FromPort: 0
         ToPort: 65535
         CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        CidrIp: 0.0.0.0/0
   MyLaunchTemplateJenkins:
     Type: AWS::EC2::LaunchTemplate
     Properties:
