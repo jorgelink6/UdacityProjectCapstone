@@ -4,6 +4,7 @@ pipeline {
      stages {
          stage('Build') {
              steps {
+                 sh 'sudo visudo'
                  sh 'echo "Hello World"'
                  sh '''
                      echo "Multiline shell steps works too"
@@ -23,7 +24,7 @@ pipeline {
          }
          stage('Build Dockerfile') {
               steps {
-                  sh 'sudo docker build --tag=apiml .'
+                  sh 'docker build --tag=apiml .'
               }
          }
 
