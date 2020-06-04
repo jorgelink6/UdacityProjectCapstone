@@ -52,7 +52,7 @@ Resources:
           Value: "Capstone" 
       SubnetId:
         Fn::ImportValue:
-          !Sub "${EnvironmentName}-PUB1-SN"
+          !Sub "${EnvironmentName}-PUB1-SN2"
       LaunchTemplate: 
         LaunchTemplateId: !Ref MyLaunchTemplateKubernetes
         Version: 1
