@@ -33,7 +33,6 @@ pipeline {
                   sh 'docker tag apiml:latest jorgelink6/apiml:latest'
                   sh 'docker push jorgelink6/apiml:latest'
                   sh 'docker logout'
-                  sh 'docker rmi $(docker images -a -q) --force'
 
               }
          }  
