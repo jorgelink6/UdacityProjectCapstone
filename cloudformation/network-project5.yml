@@ -102,6 +102,7 @@ Resources:
             sudo systemctl enable jenkins
             sudo systemctl status jenkins
             sudo apt install docker.io -y
+            sudo chmod 666 /var/run/docker.sock
             sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 && \
             sudo chmod +x /bin/hadolint
             sudo apt install tidy -y
