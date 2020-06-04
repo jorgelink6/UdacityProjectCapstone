@@ -17,6 +17,7 @@ Resources:
             sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 && \
             sudo chmod +x /bin/hadolint
             sudo apt install docker.io -y
+            sudo chmod 666 /var/run/docker.sock
             sudo systemctl start docker
             sudo systemctl enable docker
             #install conntrack
