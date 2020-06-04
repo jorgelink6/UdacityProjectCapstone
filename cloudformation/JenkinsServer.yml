@@ -72,6 +72,10 @@ Resources:
       VpcId: !Ref VPC
       SecurityGroupIngress:
       - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
         FromPort: 8080 # Edited from 8080 because project2 app  is running in port 80
         ToPort: 8080
         CidrIp: 0.0.0.0/0
@@ -84,10 +88,7 @@ Resources:
         FromPort: 0
         ToPort: 65535
         CidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        FromPort: 8000
-        ToPort: 8000
-        CidrIp: 0.0.0.0/0
+
   MyLaunchTemplateJenkins:
     Type: AWS::EC2::LaunchTemplate
     Properties:
