@@ -23,7 +23,7 @@ pipeline {
          }
          stage('Build Dockerfile') {
               steps {
-                  sh 'docker build --tag=apiml'
+                  sh 'docker build --tag=apiml .'
               }
          }
 
