@@ -26,6 +26,7 @@ pipeline {
                  dockerfile true
              }
               steps {
+                  sh 'sudo -n chmod 666 /var/run/docker.sock'
                   sh 'sudo -n docker build --tag=apiml .'
               }
          }
