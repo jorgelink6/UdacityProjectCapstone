@@ -29,7 +29,7 @@ pipeline {
          stage('Deploy docker to Docker Hub') {
               steps {
                   sh 'dockerpath=jorgelink6/apiml'
-                  sh 'docker tag apiml:latest $dockerpath:latest'
+                  sh 'docker tag apiml:latest $dockerpath:1.3'
                   sh 'docker push $dockerpath:latest'
               }
          }  
