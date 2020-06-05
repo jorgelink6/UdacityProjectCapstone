@@ -8,7 +8,7 @@ Resources:
   MyLaunchTemplateKubernetes:
     Type: AWS::EC2::LaunchTemplate
     Properties:
-      LaunchTemplateName: "KubernetesServerTemplate"
+      LaunchTemplateName: "KubernetesServerTemplate2"
       LaunchTemplateData:
         UserData:
           Fn::Base64: !Sub |
@@ -51,7 +51,7 @@ Resources:
             ### Installing minikube	
             echo 	
             echo Starting minikube with none vm driver ...	
-            sudo -E minikube start --vm-driver=none
+            #sudo -E minikube start --vm-driver=none
         InstanceType: t3.medium
         DisableApiTermination: 'true'
         KeyName: project5
