@@ -5,7 +5,7 @@ Parameters:
       Type: String
 
 Resources:
-  MyLaunchTemplateKubernetes:
+  MyLaunchTemplateKubernetesAuto:
     Type: AWS::EC2::LaunchTemplate
     Properties:
       LaunchTemplateName: "KubernetesServerTemplate2"
@@ -29,29 +29,10 @@ Resources:
             sudo apt install socat -y
             # install minikube
             curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-            # init kubernetes cluster
-            echo	
-            echo setup MINIKUBE env ...	
-            export MINIKUBE_WANTUPDATENOTIFICATION=true	
-            export MINIKUBE_WANTREPORTERRORPROMPT=false	
-            export MINIKUBE_HOME=$HOME	
-            export CHANGE_MINIKUBE_NONE_USER=true	
-            if [ -d $HOME/.kube ]; then	
-                sudo rm -r $HOME/.kube	
-            else	
-                mkdir $HOME/.kube	
-                touch $HOME/.kube/config	
-                export KUBECONFIG=$HOME/.kube/config	
-            fi	
-               
-            if [ -d $HOME/.minikube ]; then	
-                sudo rm -r $HOME/.minikube	
-            fi	
-               
-            ### Installing minikube	
-            echo 	
-            echo Starting minikube with none vm driver ...	
-            #sudo -E minikube start --vm-driver=none
+            sudo minikube start --vm-driver=none
+            sudo kubectl run ngixdemo --image=jorgelink6/apiml:ngix --port=80 --labels app=ngixdemo
+
+
         InstanceType: t3.medium
         DisableApiTermination: 'true'
         KeyName: project5
@@ -76,5 +57,5 @@ Resources:
         Fn::ImportValue:
           !Sub "${EnvironmentName}-PUB1-SN"
       LaunchTemplate: 
-        LaunchTemplateId: !Ref MyLaunchTemplateKubernetes
+        LaunchTemplateId: !Ref MyLaunchTemplateKubernetesAuto
         Version: 1
