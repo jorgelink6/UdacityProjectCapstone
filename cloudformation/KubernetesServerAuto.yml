@@ -1,0 +1,80 @@
+Parameters:
+
+  EnvironmentName:
+      Description: An environment name that will be prefixed to resource names
+      Type: String
+
+Resources:
+  MyLaunchTemplateKubernetes:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: "KubernetesServerTemplate"
+      LaunchTemplateData:
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash
+            sudo apt-get update
+            sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 && \
+            sudo chmod +x /bin/hadolint
+            sudo apt install docker.io -y
+            sudo chmod 666 /var/run/docker.sock
+            sudo systemctl start docker
+            sudo systemctl enable docker
+            #install conntrack
+            sudo apt install conntrack -y
+            #install kubectl
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+            chmod +x ./kubectl
+            sudo mv ./kubectl /usr/local/bin/kubectl
+            sudo apt install socat -y
+            # install minikube
+            curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+            # init kubernetes cluster
+            echo	
+            echo setup MINIKUBE env ...	
+            export MINIKUBE_WANTUPDATENOTIFICATION=true	
+            export MINIKUBE_WANTREPORTERRORPROMPT=false	
+            export MINIKUBE_HOME=$HOME	
+            export CHANGE_MINIKUBE_NONE_USER=true	
+            if [ -d $HOME/.kube ]; then	
+                sudo rm -r $HOME/.kube	
+            else	
+                mkdir $HOME/.kube	
+                touch $HOME/.kube/config	
+                export KUBECONFIG=$HOME/.kube/config	
+            fi	
+               
+            if [ -d $HOME/.minikube ]; then	
+                sudo rm -r $HOME/.minikube	
+            fi	
+               
+            ### Installing minikube	
+            echo 	
+            echo Starting minikube with none vm driver ...	
+            sudo -E minikube start --vm-driver=none
+        InstanceType: t3.medium
+        DisableApiTermination: 'true'
+        KeyName: project5
+        ImageId: ami-0eb89db7593b5d434
+        SecurityGroupIds:
+          - Fn::ImportValue:
+             !Sub "${EnvironmentName}-SECG"
+        BlockDeviceMappings:
+        - DeviceName: "/dev/sdk"
+          Ebs:
+            VolumeSize: '20'
+
+  KubernetesServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      Tags: 
+        - Key: "Name"
+          Value: "Blue"
+        - Key: "Project"
+          Value: "Capstone" 
+      SubnetId:
+        Fn::ImportValue:
+          !Sub "${EnvironmentName}-PUB1-SN"
+      LaunchTemplate: 
+        LaunchTemplateId: !Ref MyLaunchTemplateKubernetes
+        Version: 1
