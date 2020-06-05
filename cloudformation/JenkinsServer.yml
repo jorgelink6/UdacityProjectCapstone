@@ -145,10 +145,10 @@ Outputs:
       Description: A reference to the public subnet
       Value: !Ref PublicSubnet1
       Export:
-        Name: !Sub ${EnvironmentName}-PUB1-SN2
+        Name: !Sub ${EnvironmentName}-PUB1-SN
 
   WebServerSecGroup:
       Description: A reference to the security group
       Value: !Ref WebServerSecGroup
       Export:
-        Name: !Sub ${EnvironmentName}-SECG2
+        Name: !Sub ${EnvironmentName}-SECG

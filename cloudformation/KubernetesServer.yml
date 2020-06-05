@@ -36,7 +36,7 @@ Resources:
         ImageId: ami-0eb89db7593b5d434
         SecurityGroupIds:
           - Fn::ImportValue:
-             !Sub "${EnvironmentName}-SECG2"
+             !Sub "${EnvironmentName}-SECG"
         BlockDeviceMappings:
         - DeviceName: "/dev/sdk"
           Ebs:
@@ -52,7 +52,7 @@ Resources:
           Value: "Capstone" 
       SubnetId:
         Fn::ImportValue:
-          !Sub "${EnvironmentName}-PUB1-SN2"
+          !Sub "${EnvironmentName}-PUB1-SN"
       LaunchTemplate: 
         LaunchTemplateId: !Ref MyLaunchTemplateKubernetes
         Version: 1
